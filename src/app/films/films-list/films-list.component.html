@@ -1,0 +1,33 @@
+<div>
+    <form>
+      <mat-form-field style="width: 300px;">
+        <input matInput placeholder="Search Film" type="text" [formControl]="filmFormControl" autocomplete="off">
+      </mat-form-field>
+    </form>
+
+
+    <div>
+      <div *ngIf="!isDone">
+        <mat-spinner [diameter]="40"></mat-spinner>
+      </div>
+      <div *ngIf="isDone">
+        <mat-card *ngFor="let film of films" class="example-card" [routerLink]="[film.Title, film.imdbID]">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image">
+              <img src="{{ film.Poster }}" [ngStyle]="{width: '40px', height: '54px'}">
+            </div>
+            <mat-card-title>{{ film.Title }}</mat-card-title>
+            <mat-card-subtitle>{{ film.Year  }} , Type: {{ film.Type  }}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <div [hidden]="films.length == 0">
+          <button mat-icon-button (click)="onPrevious()" [disabled]="count <= 1">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <button mat-icon-button (click)="onNext()" [disabled]="films.length < 10">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+</div>

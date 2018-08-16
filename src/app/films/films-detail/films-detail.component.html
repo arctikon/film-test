@@ -1,0 +1,25 @@
+<div style="margin-left:1px;">
+  <div *ngIf="!isDone">
+    <p>Loading...</p>
+  </div>
+  <div id="item">
+    <div *ngIf="isDone">
+      <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{ selectedFilm?.Title }}</mat-card-title>
+        <mat-card-subtitle>{{ selectedFilm?.Year }}</mat-card-subtitle>
+      </mat-card-header>
+      <img style="width: 300px;" mat-card-image src="{{ selectedFilm?.Poster }}">
+      <mat-card-content>
+        <p>
+          {{ selectedFilm?.Plot }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="onAddToCompareList()" [disabled]="isAdd" mat-button>Add to Film List</button>
+      </mat-card-actions>
+    </mat-card>
+    </div>
+  </div>
+</div>
+
